@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Εργαλειοθήκη 360°</title>
+<meta name="description" content="29 δωρεάν εφαρμογές — χωρίς εγκατάσταση, offline, για κινητό & υπολογιστή.">
+<meta name="theme-color" content="#e11d3c">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23e11d3c'/><text x='50' y='72' font-size='60' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'>360</text></svg>">
+<style>
+:root{
+  --bg:#0c0e14;--bg2:#11141d;--card:#171b26;--card2:#1d2231;--border:#2a3140;
+  --text:#eef1f6;--muted:#8b93a7;--muted2:#5f677a;--accent:#e11d3c;--accent2:#ff3b56;--gold:#f5c451;
+  --radius:16px;--shadow:0 8px 28px rgba(0,0,0,.4);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:radial-gradient(1300px 650px at 80% -12%,#1c1220 0%,var(--bg) 55%);color:var(--text);
+  font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;min-height:100vh;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+
+.topbar{position:sticky;top:0;z-index:50;background:rgba(12,14,20,.86);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);padding:16px 20px}
+.topbar-in{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:13px;margin-right:auto}
+.brand-mark{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;font-weight:800;font-size:17px;color:#fff;
+  background:linear-gradient(135deg,var(--accent),#8f0f24);box-shadow:0 4px 14px rgba(225,29,60,.45)}
+.brand h1{margin:0;font-size:19px;letter-spacing:.5px}
+.brand small{color:var(--muted);font-size:12px}
+.search{position:relative;flex:1;min-width:200px;max-width:380px}
+.search input{width:100%;background:#0e111a;border:1px solid var(--border);border-radius:24px;color:var(--text);
+  padding:11px 16px 11px 40px;font-size:15px;outline:none;transition:.15s}
+.search input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(225,29,60,.15)}
+.search::before{content:"🔎";position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:14px;opacity:.7}
+
+.hero{max-width:1200px;margin:26px auto 8px;padding:0 20px}
+.hero h2{font-size:clamp(24px,4vw,34px);margin:0 0 6px;line-height:1.15}
+.hero h2 .hl{color:var(--accent2)}
+.hero p{color:var(--muted);margin:0;font-size:15px;max-width:640px;line-height:1.6}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.chip-stat{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-size:13px;color:var(--muted)}
+.chip-stat b{color:var(--gold)}
+
+.filters{max-width:1200px;margin:18px auto 0;padding:0 20px;display:flex;gap:8px;flex-wrap:wrap}
+.chip{background:var(--card);border:1px solid var(--border);color:var(--muted);padding:8px 14px;border-radius:20px;
+  font-size:13.5px;font-weight:600;cursor:pointer;transition:.15s;white-space:nowrap}
+.chip:hover{color:var(--text);border-color:var(--muted2)}
+.chip.active{color:#fff;background:linear-gradient(135deg,var(--accent),#a2142e);border-color:transparent;box-shadow:0 4px 12px rgba(225,29,60,.3)}
+
+.grid{max-width:1200px;margin:22px auto 60px;padding:0 20px;display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px}
+.card{position:relative;display:flex;flex-direction:column;background:linear-gradient(180deg,var(--card),var(--card2));
+  border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);
+  transition:transform .15s,border-color .15s;overflow:hidden}
+.card::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--cat,var(--accent))}
+.card:hover{transform:translateY(-4px);border-color:var(--cat,var(--accent))}
+.card-top{display:flex;align-items:center;gap:13px;margin-bottom:12px}
+.card-ic{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-size:27px;flex-shrink:0;
+  background:color-mix(in srgb,var(--cat,var(--accent)) 16%,transparent);border:1px solid color-mix(in srgb,var(--cat,var(--accent)) 35%,transparent)}
+.card h3{margin:0;font-size:17px;line-height:1.2}
+.card .cat-tag{font-size:11px;color:var(--cat,var(--accent));font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin-top:3px}
+.card p{margin:0 0 16px;color:var(--muted);font-size:13.5px;line-height:1.55;flex:1}
+.card .go{align-self:flex-start;background:color-mix(in srgb,var(--cat,var(--accent)) 14%,transparent);
+  color:var(--cat,var(--accent));border:1px solid color-mix(in srgb,var(--cat,var(--accent)) 40%,transparent);
+  padding:8px 16px;border-radius:10px;font-weight:700;font-size:13.5px;transition:.15s}
+.card:hover .go{background:var(--cat,var(--accent));color:#fff}
+
+.empty{max-width:1200px;margin:40px auto;padding:0 20px;text-align:center;color:var(--muted);display:none}
+
+.foot{border-top:1px solid var(--border);padding:22px 20px;color:var(--muted2);font-size:12.5px}
+.foot-in{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.foot b{color:var(--muted)}
+
+@media(max-width:600px){
+  .brand h1{font-size:17px}
+  .search{max-width:none;order:3;flex-basis:100%}
+  .grid{grid-template-columns:1fr;gap:13px}
+  .hero{margin-top:18px}
+}
+@media (orientation:landscape) and (max-width:1000px){
+  .grid{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <div class="brand">
+      <div class="brand-mark">360°</div>
+      <div><h1>Εργαλειοθήκη 360°</h1><small>Οι εφαρμογές του Χρόνη Μακρή</small></div>
+    </div>
+    <div class="search"><input type="search" id="q" placeholder="Αναζήτηση εφαρμογής…" autocomplete="off" aria-label="Αναζήτηση"></div>
+  </div>
+</header>
+
+<section class="hero">
+  <h2>Όλα τα <span class="hl">δωρεάν εργαλεία</span> μου, σε ένα μέρος</h2>
+  <p>Εφαρμογές που δουλεύουν στον browser — <b>χωρίς εγκατάσταση</b>, οι περισσότερες και <b>offline</b>, σε κινητό και υπολογιστή. Διάλεξε κατηγορία ή ψάξε.</p>
+  <div class="stats">
+    <span class="chip-stat"><b id="liveCount">29</b> ζωντανές εφαρμογές</span>
+    <span class="chip-stat">📱 Κινητό & 💻 Υπολογιστής</span>
+    <span class="chip-stat">🔒 Τα δεδομένα μένουν στη συσκευή σου</span>
+  </div>
+</section>
+
+<nav class="filters" id="filters"></nav>
+<main class="grid" id="grid"></main>
+<div class="empty" id="empty">Δεν βρέθηκε εφαρμογή με αυτόν τον όρο.</div>
+
+<footer class="foot">
+  <div class="foot-in">
+    <span>Εργαλειοθήκη 360° · <b>29</b> δωρεάν εφαρμογές · χωρίς εγκατάσταση</span>
+    <span>© <span id="yr"></span> Chronis Makris</span>
+  </div>
+</footer>
+
+<script>
+const CATS = {
+  fin:  {label:'Οικονομικά & Επιχειρείν', color:'#f5c451'},
+  edu:  {label:'Εκπαίδευση', color:'#3b82f6'},
+  sport:{label:'Αθλητικά', color:'#e11d3c'},
+  game: {label:'Παιχνίδια', color:'#a855f7'},
+  music:{label:'Μουσική', color:'#ec4899'},
+  home: {label:'Σπίτι & Κατασκευές', color:'#f97316'},
+  farm: {label:'Αγροτικά & Ζώα', color:'#b45309'},
+  law:  {label:'Νομικά & Δημόσιο', color:'#6366f1'},
+  health:{label:'Υγεία', color:'#06b6d4'},
+};
+const APPS = [
+  {t:'ΕΠΕΝΔΥΤΗΣ 360°', ic:'📈', cat:'fin', u:'https://xomagr-eng.github.io/ependytis-360/', d:'Υπολογισμός, ανίχνευση & ανάλυση επενδύσεων: ανατοκισμός, ROI, δάνειο, FIRE, χαρτοφυλάκιο + ζωντανά crypto & μετοχές με ειδοποιήσεις.', neo:true},
+  {t:'ΣΥΝΤΑΞΗ 360°', ic:'🧓', cat:'fin', u:'https://xomagr-eng.github.io/syntaxi-360/', d:'Πότε & πόσο σύνταξη: κύρια & επικουρική βάσει ενσήμων, ηλικίας, ταμείων & μισθού, με σύγκριση σεναρίων.'},
+  {t:'ΑΓΟΡΕΣ 360°', ic:'🛒', cat:'fin', u:'https://xomagr-eng.github.io/agores360/', d:'Σύγκριση τιμών σούπερ μάρκετ, λίστες «τι χρειάζεται ένα σπίτι» & έξυπνο καλάθι με σύνολα ανά κατάστημα.'},
+  {t:'Προϋπολογισμός Ταξιδιού', ic:'✈️', cat:'fin', u:'https://xomagr-eng.github.io/proypologismos-taxidiou/', d:'Κόστος μετακίνησης & διαμονής με ζωντανή απόσταση σε χάρτη (OSM/OSRM).'},
+  {t:'Product Finder 360°', ic:'🔍', cat:'fin', u:'https://xomagr-eng.github.io/product-finder-360/', d:'Σουίτα 5 εργαλείων εύρεσης προϊόντος υψηλής ζήτησης: ζήτηση÷ανταγωνισμός, ανάλυση κριτικών, επικύρωση ιδέας & κενά αγοράς.'},
+
+  {t:'ΣΧΟΛΕΙΟ 360°', ic:'🎒', cat:'edu', u:'https://xomagr-eng.github.io/sxoleio360/', d:'Μελέτη & προετοιμασία Γυμνάσιο→Πανελλήνιες: 763 σχολές+βάσεις, πρόγραμμα, κουίζ & flashcards με spaced-repetition.'},
+  {t:'ΔΙΔΑΚΤΩΡ 360°', ic:'🎓', cat:'edu', u:'https://xomagr-eng.github.io/didaktor360/', d:'Οδηγός υποψηφίου διδάκτορα: εύρεση θέματος, μεθοδολογία, πηγές & αυτόματο χρονοδιάγραμμα 3/4/5 ετών.'},
+  {t:'Το Πρόγραμμά μου', ic:'🗓️', cat:'edu', u:'https://xomagr-eng.github.io/programma-mathiti/', d:'Πρόγραμμα σχολείου/φροντιστηρίων & δραστηριοτήτων + εργασίες, διαγωνίσματα και υπενθυμίσεις.'},
+  {t:'ΒιβλιοRoll', ic:'📖', cat:'edu', u:'https://xomagr-eng.github.io/biblioroll/', d:'Ανοίγει PDF/Word/Excel/EPUB σαν βιβλίο με ρεαλιστικό γύρισμα σελίδας, αφήγηση (TTS), σημειώσεις & music player.'},
+
+  {t:'TACTIX', ic:'⚽', cat:'sport', u:'https://xomagr-eng.github.io/tactix/', d:'Προπονητής ποδοσφαίρου FM-style: τακτικές, προπονήσεις & ανάλυση ομάδας.'},
+  {t:'TACTIX BASKET', ic:'🏀', cat:'sport', u:'https://xomagr-eng.github.io/tactix-basket/', d:'Προπονητής μπάσκετ: 12 συστήματα, 57 συνεργασίες, ημιγήπεδο SVG, ταμπλό timeout με γραφίδα & export.'},
+  {t:'DATA COACH 360°', ic:'📊', cat:'sport', u:'https://xomagr-eng.github.io/datacoach-360/', d:'Αναλυτής ποδοσφαίρου: απόδοση & xG, report αντιπάλου, scouting/Moneyball, με StatsBomb & FBref.'},
+
+  {t:'Σκάκι & Τάβλι 360°', ic:'♟️', cat:'game', u:'https://xomagr-eng.github.io/skaki-tavli-360/', d:'Εκπαίδευση σκάκι με δική μας μηχανή+AI, ανοίγματα & ασκήσεις — και τάβλι (Πόρτες/Πλακωτό/Φεύγα) vs AI.'},
+  {t:'ΜΠΙΛΙΑΡΔΟ PRO', ic:'🎱', cat:'game', u:'https://xomagr-eng.github.io/biliardo-pro/', d:'Δάσκαλος μπιλιάρδου για όλα τα είδη, προπονητής στόχευσης, παιχνίδι 9-ball vs AI με φυσική & puzzles.'},
+  {t:'ΤΡΑΠΟΥΛΑ 360°', ic:'🃏', cat:'game', u:'https://xomagr-eng.github.io/trapoula360/', d:'Δάσκαλος & προπονητής 19 παιχνιδιών τράπουλας με διαδραστικό τραπέζι vs AI και 58 ασκήσεις τακτικής.'},
+  {t:'ΕΠΙΤΡΑΠΕΖΙΟ Studio', ic:'🎲', cat:'game', u:'https://xomagr-eng.github.io/epitrapezio-360/', d:'Φτιάξε δικά σου επιτραπέζια: 6 τύποι ταμπλό, 15 πρότυπα, κάρτες/πιόνια/ζάρια, play mode & εκτύπωση/PNG.'},
+
+  {t:'DJ PRO', ic:'🎧', cat:'music', u:'https://xomagr-eng.github.io/dj-orchestra-pro/', d:'Επαγγελματική κονσόλα DJ: 2 decks, EQ/mixer, beatgrid+BPM, sampler, sync/auto-mix & εγγραφή.'},
+  {t:'PLAYLIST 360°', ic:'🎵', cat:'music', u:'https://xomagr-eng.github.io/playlist360/', d:'Media player & playlists: τοπικά τραγούδια/φάκελοι, YouTube, online ραδιόφωνο & streams, με drag&drop.'},
+  {t:'ΜΟΥΣΙΚΗ ΣΧΟΛΗ 360°', ic:'🎹', cat:'music', u:'https://xomagr-eng.github.io/mousiki-sxoli-360/', d:'Εκμάθηση πιάνου & κιθάρας με πραγματικό ήχο: όργανα, θεωρία, συγχορδίες, μαθήματα & σύνθεση τραγουδιών.'},
+
+  {t:'ΟΙΚΟΔΟΜΗ 360°', ic:'🏗️', cat:'home', u:'https://xomagr-eng.github.io/oikodomi-360/', d:'Πλήρης οδηγός & υπολογιστής κατασκευής: στάδια, κόστη, υλικά, εργαλεία, μάστορες + DIY υπολογισμοί δωματίου.'},
+  {t:'Ο ΜΑΣΤΟΡΑΣ', ic:'📐', cat:'home', u:'https://xomagr-eng.github.io/mastoras/', d:'Μέτρηση & διάταξη για πλακίδια, μάρμαρα & γυψοσανίδες — υπολογισμός υλικών και κοψίματος.'},
+  {t:'ΓΕΥΣΕΙΣ 360°', ic:'🍽️', cat:'home', u:'https://xomagr-eng.github.io/gefseis-360/', d:'2.678 συνταγές & γεύσεις: καφές, ταβέρνα, γλυκά, κρασιά/κοκτέιλ, εβδομαδιαίο πρόγραμμα & cooking mode.'},
+
+  {t:'ΑΓΡΟΤΕΧΝΙΤΗΣ ΤΝ', ic:'🫒', cat:'farm', u:'https://xomagr-eng.github.io/agrotexnitis/', d:'Γεωργική διαχείριση με τεχνητή νοημοσύνη, με έμφαση στην ελιά.'},
+  {t:'ΚΤΗΝΟΤΡΟΦΟΣ ΤΝ', ic:'🐑', cat:'farm', u:'https://xomagr-eng.github.io/ktinotrofos/', d:'Διαχείριση κοπαδιού: 29 είδη, φυλές & εργαλεία, THI καύσωνα, κύηση, χρόνος αναμονής φαρμάκων, FAMACHA & symptom checker.'},
+  {t:'ΣΚΥΛΟΣ 360°', ic:'🐕', cat:'farm', u:'https://xomagr-eng.github.io/skylos-360/', d:'Εκπαίδευση & φροντίδα σκύλου: εντολές/clicker, διατροφή (RER/MER), υγεία & εμβόλια, κόστος, φυλές & άλμπουμ.'},
+
+  {t:'ΝΟΜΟΠΥΞΙΔΑ 360°', ic:'⚖️', cat:'law', u:'https://xomagr-eng.github.io/nomopyxida/', d:'Νομικός οδηγός & βάση ελληνικής νομοθεσίας με έξυπνη αναζήτηση, σύμβουλο «έχω πρόβλημα» & πρότυπα.'},
+  {t:'ΓΚΙΣΕ 360°', ic:'🏛️', cat:'law', u:'https://xomagr-eng.github.io/gkise-360/', d:'«Κάθε γκισέ»: ~451 δημόσιες υπηρεσίες (ΚΕΠ/εφορία/ΕΦΚΑ/κτηματολόγιο…) + εργαλεία (IBAN/ΑΦΜ/φόρος/προθεσμίες).'},
+  {t:'ΓΗ & ΚΛΗΡΟΝΟΜΙΑ 360°', ic:'🏞️', cat:'law', u:'https://xomagr-eng.github.io/gi-klironomia-360/', d:'Νομικός οδηγός για χωράφια & κτήματα: κτηματολόγιο, γονική/δωρεά, κληρονομιά/διαθήκη, δίοδος-δρόμος.'},
+
+  {t:'FitPlan', ic:'💪', cat:'health', u:'https://xomagr-eng.github.io/fitplan/', d:'Διατροφή, δίαιτα & γυμναστική: BMR/TDEE, μακροθρεπτικά και αυτόματα προγράμματα.'},
+];
+
+const grid = document.getElementById('grid');
+const filters = document.getElementById('filters');
+const qInput = document.getElementById('q');
+const empty = document.getElementById('empty');
+document.getElementById('yr').textContent = new Date().getFullYear();
+document.getElementById('liveCount').textContent = APPS.length;
+
+let activeCat = 'all';
+
+function buildFilters(){
+  const counts = {}; APPS.forEach(a=>counts[a.cat]=(counts[a.cat]||0)+1);
+  let html = `<button class="chip active" data-cat="all">Όλα <span style="opacity:.6">${APPS.length}</span></button>`;
+  Object.keys(CATS).forEach(k=>{
+    if(!counts[k]) return;
+    html += `<button class="chip" data-cat="${k}" style="--cat:${CATS[k].color}">${CATS[k].label} <span style="opacity:.6">${counts[k]}</span></button>`;
+  });
+  filters.innerHTML = html;
+  filters.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{
+    activeCat=c.dataset.cat;
+    filters.querySelectorAll('.chip').forEach(x=>x.classList.toggle('active',x===c));
+    render();
+  }));
+}
+
+const norm = s => (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+function render(){
+  const q = norm(qInput.value.trim());
+  const items = APPS.filter(a=>{
+    const okCat = activeCat==='all' || a.cat===activeCat;
+    const okQ = !q || norm(a.t+' '+a.d+' '+CATS[a.cat].label).includes(q);
+    return okCat && okQ;
+  });
+  grid.innerHTML = items.map(a=>`
+    <a class="card" href="${a.u}" target="_blank" rel="noopener" style="--cat:${CATS[a.cat].color}">
+      <div class="card-top">
+        <div class="card-ic">${a.ic}</div>
+        <div><h3>${a.t}${a.neo?' <span style="font-size:10px;vertical-align:middle;background:var(--accent);color:#fff;padding:2px 7px;border-radius:10px;letter-spacing:.5px">ΝΕΟ</span>':''}</h3>
+          <div class="cat-tag">${CATS[a.cat].label}</div></div>
+      </div>
+      <p>${a.d}</p>
+      <span class="go">Άνοιγμα ↗</span>
+    </a>`).join('');
+  empty.style.display = items.length ? 'none' : 'block';
+  grid.style.display = items.length ? 'grid' : 'none';
+}
+
+qInput.addEventListener('input', render);
+buildFilters();
+render();
+</script>
+</body>
+</html>
